@@ -14,6 +14,11 @@ public class hardwaredemo {
 
     public Servo clawServo;
 
+    public DcMotor flipper;
+
+    public DcMotor arm;
+
+
     public double maxSpeed = 1;
     private static hardwaredemo myInstance = null;
     public static hardwaredemo getInstance() {
@@ -35,6 +40,16 @@ public class hardwaredemo {
                 left.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 left.setDirection(DcMotor.Direction.REVERSE);
                 left.setPower(0);
+
+                flipper = hwmap.get(DcMotor.class, "flipper");
+                flipper.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                flipper.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                flipper.setPower(0);
+
+                arm = hwmap.get(DcMotor.class, "arm");
+                arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                arm.setPower(0);
 
                 //intialize servo
                 clawServo = hwmap.get(Servo.class, "claw servo");
