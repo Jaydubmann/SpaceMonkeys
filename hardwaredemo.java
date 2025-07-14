@@ -14,6 +14,10 @@ public class hardwaredemo {
 
     public Servo clawServo;
 
+    public Servo clawServoright;
+
+    public Servo rampServo;
+
     public DcMotor flipper;
 
     public DcMotor arm;
@@ -43,16 +47,17 @@ public class hardwaredemo {
 
                 flipper = hwmap.get(DcMotor.class, "flipper");
                 flipper.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-                flipper.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                flipper.setPower(0);
+                flipper.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
                 arm = hwmap.get(DcMotor.class, "arm");
                 arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-                arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                arm.setPower(0);
+                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
                 //intialize servo
                 clawServo = hwmap.get(Servo.class, "claw servo");
+                clawServoright = hwmap.get(Servo.class, "right servo");
+                rampServo = hwmap.get(Servo.class, "ramp servo");
             }
         public void setPower(double motor1, double motor2) {
             right.setPower(Range.clip(motor1, -maxSpeed, maxSpeed));
